@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 project(tinyxml_vendor)
 
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
-find_package(tinyxml)
+# find_package(TinyXML)
 
 if (NOT TinyXML_FOUND)
   include(ExternalProject)
@@ -16,15 +16,17 @@ if (NOT TinyXML_FOUND)
     # I have to misuse the TEST_COMMAND here
     # since this is the only command which gets executed after
     # the install command
-    TEST_AFTER_INSTALL 1
-    TEST_COMMAND
-    ${CMAKE_COMMAND} -E chdir <INSTALL_DIR>/include git apply -p1 ${CMAKE_CURRENT_SOURCE_DIR}/enforce-use-stl.patch
+    #TEST_AFTER_INSTALL 1
     PATCH_COMMAND
+    ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 ${CMAKE_CURRENT_SOURCE_DIR}/enforce-use-stl.patch
+    COMMAND
     ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/tinyxml_cmakelists.txt" <SOURCE_DIR>/CMakeLists.txt
     )
 
   # The external project will install to the build folder, but we'll install that on make install.
   install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/tinyxml_install/ DESTINATION ${CMAKE_INSTALL_PREFIX})
+else()
+  message("TinyXML from system")
 endif()
 
 configure_file(tinyxml_vendorConfig.cmake.in "${PROJECT_BINARY_DIR}/tinyxml_vendorConfig.cmake" @ONLY)
