@@ -14,7 +14,7 @@ if (NOT TinyXML_FOUND)
       -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/tinyxml_install
     INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/tinyxml_install"
     PATCH_COMMAND
-    ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 ${CMAKE_CURRENT_SOURCE_DIR}/enforce-use-stl.patch
+    ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 --ignore-space-changes --whitespace=nowarn ${CMAKE_CURRENT_SOURCE_DIR}/enforce-use-stl.patch
     COMMAND
     ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/tinyxml_cmakelists.txt" <SOURCE_DIR>/CMakeLists.txt
     )
