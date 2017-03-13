@@ -3,7 +3,8 @@ project(tinyxml_vendor)
 
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
 find_package(TinyXML)
-
+# Look again, explicitly for config packages.
+find_package(TinyXML CONFIG)
 if (NOT TinyXML_FOUND)
   include(ExternalProject)
   ExternalProject_Add(tinyxml-2.6.2
