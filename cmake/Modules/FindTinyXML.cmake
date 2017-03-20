@@ -42,7 +42,7 @@
 ##################################################################################################
 
 # First attempt to find Config-file package
-find_package(TinyXML CONFIG)
+find_package(TinyXML CONFIG QUIET)
 
 if (NOT TinyXML_FOUND)
 
