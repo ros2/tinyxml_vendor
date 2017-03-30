@@ -22,7 +22,7 @@ if (NOT TinyXML_FOUND)
   # The external project will install to the build folder, but we'll install that on make install.
   install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/tinyxml_install/ DESTINATION ${CMAKE_INSTALL_PREFIX})
 else()
-  message("Found TinyXML. Using TinyXML from system.")
+  message(STATUS "Found TinyXML. Using TinyXML from system.")
 endif()
 
 configure_file(tinyxml_vendorConfig.cmake.in "${PROJECT_BINARY_DIR}/tinyxml_vendorConfig.cmake" @ONLY)
