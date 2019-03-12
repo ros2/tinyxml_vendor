@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.5)
 project(tinyxml_vendor)
 
-option(FORCE_BUILD_TINYXML
+option(FORCE_BUILD_VENDOR_PKG
   "Build TinyXML from source, even if system-installed package is available"
   OFF)
 
-if(NOT FORCE_BUILD_TINYXML)
+if(NOT FORCE_BUILD_VENDOR_PKG)
   list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
   find_package(TinyXML)
 endif()
