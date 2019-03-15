@@ -11,7 +11,7 @@ if (NOT TinyXML_FOUND)
     URL https://superb-dca2.dl.sourceforge.net/project/tinyxml/tinyxml/2.6.2/tinyxml_2_6_2.tar.gz
     URL_MD5 c1b864c96804a10526540c664ade67f0
     CMAKE_ARGS
-      -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/tinyxml_install
+      -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/tinyxml_install -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
     INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/tinyxml_install"
     PATCH_COMMAND
     ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 --ignore-space-change --whitespace=nowarn ${CMAKE_CURRENT_SOURCE_DIR}/enforce-use-stl.patch
