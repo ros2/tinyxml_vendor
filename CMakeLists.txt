@@ -5,6 +5,8 @@ option(FORCE_BUILD_VENDOR_PKG
   "Build TinyXML from source, even if system-installed package is available"
   OFF)
 
+find_package(ament_cmake REQUIRED)
+
 if(NOT FORCE_BUILD_VENDOR_PKG)
   list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
   find_package(TinyXML)
@@ -37,16 +39,6 @@ else()
   message(STATUS "Found TinyXML. Using TinyXML from system.")
 endif()
 
-configure_file(tinyxml_vendorConfig.cmake.in "${PROJECT_BINARY_DIR}/tinyxml_vendorConfig.cmake" @ONLY)
-configure_file(tinyxml_vendorConfig-version.cmake.in "${PROJECT_BINARY_DIR}/tinyxml_vendorConfig-version.cmake" @ONLY)
-
 install(DIRECTORY cmake DESTINATION share/${PROJECT_NAME})
 
-install(FILES
-  package.xml
-  DESTINATION share/${PROJECT_NAME})
-
-install(FILES
-  "${PROJECT_BINARY_DIR}/tinyxml_vendorConfig.cmake"
-  "${PROJECT_BINARY_DIR}/tinyxml_vendorConfig-version.cmake"
-  DESTINATION share/${PROJECT_NAME}/cmake)
+ament_package()
