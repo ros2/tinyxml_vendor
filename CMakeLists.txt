@@ -41,4 +41,6 @@ endif()
 
 install(DIRECTORY cmake DESTINATION share/${PROJECT_NAME})
 
-ament_package()
+ament_package(
+  CONFIG_EXTRAS "tinyxml_vendor-extras.cmake"
+)
