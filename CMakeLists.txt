@@ -17,7 +17,7 @@ if (NOT TinyXML_FOUND)
   include(ExternalProject)
   ExternalProject_Add(tinyxml-2.6.2
     PREFIX tinyxml-2.6.2
-    URL https://superb-dca2.dl.sourceforge.net/project/tinyxml/tinyxml/2.6.2/tinyxml_2_6_2.tar.gz
+    URL https://downloads.sourceforge.net/project/tinyxml/tinyxml/2.6.2/tinyxml_2_6_2.tar.gz
     URL_MD5 c1b864c96804a10526540c664ade67f0
     CMAKE_ARGS
       -DBUILD_SHARED_LIBS=ON
