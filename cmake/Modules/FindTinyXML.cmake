@@ -57,6 +57,9 @@ if (NOT TinyXML_FOUND)
   if(TinyXML_ROOT_DIR)
     set(TinyXML_INCLUDE_PATH PATHS "${TinyXML_ROOT_DIR}/include" NO_DEFAULT_PATH)
     set(TinyXML_LIBRARY_PATH PATHS "${TinyXML_ROOT_DIR}/lib"     NO_DEFAULT_PATH)
+  else()
+    set(TinyXML_INCLUDE_PATH "")
+    set(TinyXML_LIBRARY_PATH "")
   endif()
 
   # Find headers and libraries
