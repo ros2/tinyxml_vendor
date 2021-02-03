@@ -14,6 +14,12 @@ endif()
 
 
 if (NOT TinyXML_FOUND)
+  set(extra_cmake_args)
+
+  if(DEFINED CMAKE_BUILD_TYPE)
+    list(APPEND extra_cmake_args "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}")
+  endif()
+
   include(ExternalProject)
   ExternalProject_Add(tinyxml-2.6.2
     PREFIX tinyxml-2.6.2
@@ -21,11 +27,11 @@ if (NOT TinyXML_FOUND)
     URL_MD5 c1b864c96804a10526540c664ade67f0
     CMAKE_ARGS
       -DBUILD_SHARED_LIBS=ON
-      -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
       -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/tinyxml_install
       -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
       -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
       -DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}
+      ${extra_cmake_args}
     INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/tinyxml_install"
     PATCH_COMMAND
     ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 --ignore-space-change --whitespace=nowarn ${CMAKE_CURRENT_SOURCE_DIR}/enforce-use-stl.patch
