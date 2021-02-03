@@ -20,6 +20,7 @@ if (NOT TinyXML_FOUND)
     URL https://downloads.sourceforge.net/project/tinyxml/tinyxml/2.6.2/tinyxml_2_6_2.tar.gz
     URL_MD5 c1b864c96804a10526540c664ade67f0
     CMAKE_ARGS
+      -Wno-dev
       -DBUILD_SHARED_LIBS=ON
       -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
       -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/tinyxml_install
