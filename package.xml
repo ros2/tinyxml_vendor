@@ -4,8 +4,12 @@
   <name>tinyxml_vendor</name>
   <version>0.8.2</version>
   <description>CMake shim over the tinxml library.</description>
-  <maintainer email="michel@ekumenlabs.com">Michel Hidalgo</maintainer>
+
+  <maintainer email="geoff@openrobotics.org">Geoffrey Biggs</maintainer>
+
   <license>Apache License 2.0</license>
+
+  <author email="michel@ekumenlabs.com">Michel Hidalgo</author>
   <author email="steven@openrobotics.org">Steven! Ragnarök</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
