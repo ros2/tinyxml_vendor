@@ -1,14 +1,50 @@
 cmake_minimum_required(VERSION 3.5)
-project(tinyxml)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-add_definitions(-DTIXML_USE_STL)
-add_library(tinyxml tinyxml.cpp tinyxmlerror.cpp tinyxmlparser.cpp)
-set_target_properties(tinyxml PROPERTIES
-                      INSTALL_NAME_DIR ${CMAKE_INSTALL_PREFIX}/lib)
 
-install(TARGETS tinyxml
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib
-        RUNTIME DESTINATION lib)
+project(tinyxml VERSION 2.6.2)
+
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+add_library(${PROJECT_NAME} tinyxml.cpp tinyxmlerror.cpp tinyxmlparser.cpp)
+add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+
+target_compile_definitions(${PROJECT_NAME} PUBLIC TIXML_USE_STL)
+
+include(GNUInstallDirs)
+
 install(FILES tinyxml.h tinystr.h
-        DESTINATION include)
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+install(TARGETS ${PROJECT_NAME}
+    EXPORT "${PROJECT_NAME}-targets"
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    )
+
+install(EXPORT "${PROJECT_NAME}-targets"
+        FILE "${PROJECT_NAME}-targets.cmake"
+        NAMESPACE "${PROJECT_NAME}::"
+        DESTINATION "lib/cmake/${PROJECT_NAME}"
+        )
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+    "${PROJECT_NAME}-config-version.cmake"
+    VERSION ${PACKAGE_VERSION}
+    COMPATIBILITY AnyNewerVersion
+    )
+
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}-config.cmake"
+              "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config-version.cmake"
+        DESTINATION "lib/cmake/${PROJECT_NAME}"
+        )
+
+# Use the CPack Package Generator
+set(CPACK_PACKAGE_VENDOR "tinyxml")
+set(CPACK_PACKAGE_CONTACT "github.com/ros2/tinyxml_vendor")
+set(CPACK_PACKAGE_DESCRIPTION "tinyxml")
+set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+set(CPACK_RESOURCE_FILE_README   "${CMAKE_CURRENT_SOURCE_DIR}/readme.txt")
+include(CPack)
