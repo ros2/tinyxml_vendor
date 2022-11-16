@@ -5,10 +5,11 @@
   <version>0.9.1</version>
   <description>CMake shim over the tinxml library.</description>
 
-  <maintainer email="geoff@openrobotics.org">Geoffrey Biggs</maintainer>
+  <maintainer email="scott@openrobotics.org">Scott K Logan</maintainer>
 
   <license>Apache License 2.0</license>
 
+  <author email="geoff@openrobotics.org">Geoffrey Biggs</author>
   <author email="michel@ekumenlabs.com">Michel Hidalgo</author>
   <author email="steven@openrobotics.org">Steven! Ragnarök</author>
 
