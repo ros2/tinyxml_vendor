@@ -1,0 +1,18 @@
+diff -uNr a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt	1969-12-31 16:00:00.000000000 -0800
++++ b/CMakeLists.txt	2022-12-08 18:28:55.457559783 -0800
+@@ -0,0 +1,14 @@
++cmake_minimum_required(VERSION 3.5)
++project(tinyxml)
++set(CMAKE_POSITION_INDEPENDENT_CODE ON)
++add_definitions(-DTIXML_USE_STL)
++add_library(tinyxml tinyxml.cpp tinyxmlerror.cpp tinyxmlparser.cpp)
++set_target_properties(tinyxml PROPERTIES
++                      INSTALL_NAME_DIR ${CMAKE_INSTALL_PREFIX}/lib)
++
++install(TARGETS tinyxml
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib
++        RUNTIME DESTINATION lib)
++install(FILES tinyxml.h tinystr.h
++        DESTINATION include)
