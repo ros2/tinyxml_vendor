@@ -33,8 +33,6 @@ if (NOT TinyXML_FOUND)
       -DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}
       ${extra_cmake_args}
     INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/tinyxml_install"
-    PATCH_COMMAND
-    ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 --ignore-space-change --whitespace=nowarn ${CMAKE_CURRENT_SOURCE_DIR}/enforce-use-stl.patch
     COMMAND
     ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/tinyxml_cmakelists.txt" <SOURCE_DIR>/CMakeLists.txt
     )
